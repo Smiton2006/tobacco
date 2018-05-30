@@ -27,10 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    '192.168.1.34',
-    '10.30.103.81',
-    '37.29.88.157',
-    '192.168.43.56',    
+    'smiton.pythonanywhere.com',    
 ]
 
 # Application definition
