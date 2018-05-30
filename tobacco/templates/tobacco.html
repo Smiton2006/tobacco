@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+
+{% block tobaccos %}
+<div class="large-12 columns">
+        <h1> <a href="/tobacco/get/{{ tobacco.id }}" title="{{article.article_title}}">{{tobacco.brand}} {{tobacco.taste}} </a></h1>
+        <hr>
+</div> 
+<div class="row">
+        <div class="columns small-3">
+                <img src="{{tobacco.img_src}}" width = "200px"/></div>
+        <div class="columns small-2 end">
+                <div class="slider" data-slider data-initial-start="1" data-end="5">
+                        <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput1"></span>
+                        <span class="slider-fill" data-slider-fill></span>
+                </div>
+                <form action="#" method="POST">
+                        {% csrf_token %}
+                        <input type="number" name="rate" id="sliderOutput1">
+                        <input type="submit" class="button" value="Оценить">
+                </form>
+        </div>
+</div>
+
+          
+{% endblock tobaccos %} 
+
+{% block script %}
+<script src="{% static "js/vendor/jquery.js"%}"></script>
+<script src="{% static "js/vendor/foundation.min.js"%}"></script>
+<script>$(document).foundation();</script>
+
+{% endblock script %}

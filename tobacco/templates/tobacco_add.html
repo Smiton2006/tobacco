@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block article %}
+<div class="row align-middle">
+    {% if username %}
+        <div class = 'columns medium-6'>
+            <form action="/tobacco/add" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" class="button" value="Добавить табак">
+            </form> 
+        </div>
+    {% else %}
+        <p>Только авторизованные пользователи могут добавлять табакт</p>
+        <a href="/auth/login" class="button radius large"> Авторизоватся</a>
+    {% endif %}   
+    </div>
+{% endblock article %}

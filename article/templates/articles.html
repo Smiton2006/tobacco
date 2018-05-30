@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% block articles %}
+<div class="large-8 columns">
+    <h2>
+        Дымные вести
+    </h2>
+    {% for article in articles %}
+        <h5> <a href="/article/get/{{ article.id }}" title="{{article.article_title}}">{{article.article_title}}</a>   </h5>
+        <p>  {{article.article_text}}  </p>
+        <h6> {{article.article_date}} </h6>
+        <p> <a href="/article/addlike/{{ article.id }}" title="добавить лайт"> <img src="{% static "thumbs-up-icon.png"%} " width = "20px"/></a>  {{article.article_likes}}  </p>
+        <hr>
+    {% endfor %}
+</div>
+<div class="large-3 columns">
+    <p>
+        <a href="/article/add" class="button expand radius">+ Добавить статью</a>
+    </p>        
+</div>
+<div class="row">
+    <div class="large-9 columns">
+        <nav aria-label="Pagination">
+            <ul class="pagination">
+                {% if articles.has_previous %}
+                    <li class="pagination-previous"><a href="/page/{{ articles.previous_page_number }}">Previous</a></li>
+                {% else %}
+                    <li class="pagination-previous disabled">Previous</a></li>
+                {% endif %}
+                {% for page in pages %}
+                    {% if page == articles.number %}
+                        <li class="current"><span class="show-for-sr"></span>{{page}}</li>
+                    {% else %}
+                        <li><a href="/page/{{ page }}">{{ page }}</a></li>
+                    {% endif %}    
+                {% endfor %}             
+                {% if articles.has_next %}
+                    <li class="pagination-next"><a href="/page/{{ articles.next_page_number }}">Next</a></li>
+                {% else %}
+                    <li class="pagination-next disabled">Next</li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock articles %}    

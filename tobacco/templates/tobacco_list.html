@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+
+{% block tobaccos %}
+<div class="large-8 columns">
+    <h2>
+        Табаки
+    </h2><table class="hover stack">
+        <thead>
+          <tr>
+            <th width="75">Брэнд</th>
+            <th width="150">Вкус</th>
+            <th width="100">Оценка</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+    {% for tobacco in tobaccos %}
+    <tr>
+        <td>{{tobacco.brand}}</td>
+        <td><a href="/tobacco/get/{{ tobacco.id }}" title="{{article.article_title}}"> {{tobacco.taste}} </a></td>
+        <td>{{tobacco.avg_rate}}</td>
+      </tr>
+    {% endfor %}
+</tbody>
+</table>
+</div>
+<div class="large-3 columns">
+    <p>
+        <a href="/tobacco/add" class="button expand radius">+ Добавить табак</a>
+    </p>        
+</div>
+{% endblock tobaccos %}   

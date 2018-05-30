@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+
+
+{% block article %}
+    {% if username %}
+    <div>
+        <form action="/article/add" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="button" value="Добавить статью">
+        </form> 
+    </div>
+    {% else %}
+            <p>Только авторизованные пользователи могут добавлять статьи</p>
+            <a href="/auth/login" class="button radius large">Авторизироваться</a>
+    {% endif %}   
+
+{% endblock article %}

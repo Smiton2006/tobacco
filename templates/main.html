@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hooka Unity Inc.</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/foundation.min.css"%}"/>
+</head>
+<body>
+        <div class="top-bar">
+                <div class="top-bar-left">
+                    <ul class="menu">  
+                        <li>
+                            <a style="color: white" href="/">
+                                <img src="{% static "img/test.png"%} " width = "50px"/>
+                                Hooka Unity Inc. 
+                            </a>
+                        </li>
+                        <li class="menu-text"><input type="search" placeholder="Search"></li>
+                        <li class="menu-text"> <span ><button type="button" class="button">Search</button></span></li> 
+                    </ul>
+                </div>   
+                <div class="top-bar-right">
+                  <ul class="menu">     
+                    {% if username %}
+                        <li> <a style="color: white" href="/auth/logout"> Выйти {{username}} </a></li>
+                    {% else %}
+                        <li> <a  style="color: white" href="/auth/login"> Войти </a></li>
+                    {% endif %}                  
+                  </ul>
+                </div>
+             </div>
+        </div>
+    <div class="row">
+            <br>
+        {% block articles %}{% endblock articles %}
+        {% block tobaccos %}{% endblock tobaccos %}     
+        {% block article %}{% endblock article %}
+        {% block login %}{% endblock login %}
+    </div>
+    {% block script %}{% endblock script %}
+</body>
+</html>

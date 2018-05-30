@@ -1,0 +1,10 @@
+Примененение изменений в настройках models:
+    python manage.py makemigrations {app_name}                  #подготовка к миграции в дб
+    python manage.py sqlmigrate {app_name} {migration_number}   #показ внесенныех изменений
+    python manage.py migrate                                    #внесение изменений в дб
+
+Старт сервера:
+    python.exe manage.py runserver
+
+Новое приложение:
+    python manage.py startapp  {app_name}
