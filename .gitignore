@@ -5,3 +5,6 @@ __pycache__
 myvenv
 *.sqlite3
 .DS_Store
+.idea
+.vscode
+Recipes
