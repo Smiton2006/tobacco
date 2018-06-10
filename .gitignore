@@ -8,3 +8,5 @@ myvenv
 .idea
 .vscode
 Recipes
+*.scss
+*.map

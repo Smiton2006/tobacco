@@ -1,14 +1,36 @@
 {% extends "main.html" %}
 {% block article %}
-<div class="row align-middle">
+<div class="row justify-content-md-center">
+        <div class="col-5"
     {% if username %}
-        <div class = 'columns medium-6'>
-            <form action="/tobacco/add" method="POST">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" class="button" value="Добавить табак">
-            </form> 
+        <form action="/tobacco/add" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {% for field in form %}
+                    <div class="input-group row">
+                        <label class="col-sm-6 col-form-label" for="{{field.id_for_label}}">{{ field.label_tag }}</label>
+                        <br>
+                        <div class="col-sm-10">
+                            <input data-toggle="tooltip" data-placement="right" data-html="true" title="{{field.help_text}}" class="form-control" id="{{field.id_for_label}}" maxlength="30" name="{{field.html_name}}"/>
+                        </div> 
+                        {%if field.errors%}
+                            <br>
+                            <br>
+                            <div class="alert alert-warning" role="alert">
+                                {% for error in field.errors %}
+                                    <li>{{error}}</li>
+                                {% endfor %}
+                            </div>
+                        {%endif%}            
+                    </div>
+                {% endfor %}
+                <br>
+                
+                <input class="btn btn-primary" type="submit" value="Добавить табак"> 
+            </div>
+        </form> 
         </div>
+    </div>
     {% else %}
         <p>Только авторизованные пользователи могут добавлять табакт</p>
         <a href="/auth/login" class="button radius large"> Авторизоватся</a>

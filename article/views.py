@@ -18,7 +18,7 @@ now_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 # Create your views here.
 def articles(request,page_number=1):
     all_articles = Article.objects.all()
-    paginator = Paginator(all_articles, 2)
+    paginator = Paginator(all_articles, 3)
     page = paginator.page(page_number)
     args = {}
     args['articles'] = page

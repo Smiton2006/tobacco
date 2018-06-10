@@ -2,10 +2,11 @@
 {% load staticfiles %}
 
 {% block tobaccos %}
-<div class="large-8 columns">
+<div class="row">
+    <div class="col-6">
     <h2>
         Табаки
-    </h2><table class="hover stack">
+    </h2><table class="table table-hover table-dark">
         <thead>
           <tr>
             <th width="75">Брэнд</th>
@@ -25,9 +26,14 @@
 </tbody>
 </table>
 </div>
-<div class="large-3 columns">
-    <p>
-        <a href="/tobacco/add" class="button expand radius">+ Добавить табак</a>
-    </p>        
+<div class="col">
+        <div id="sticky-anchor"></div>
+        <div class="sticky right">
+        <a href="/tobacco/add" class=" btn btn-primary">+ Добавить табак</a>   
+    </div>
 </div>
+</div>      
 {% endblock tobaccos %}   
+{% block script %}
+    <script src="{% static "js/custom.js"%}"></script>
+{% endblock script %}

@@ -31,9 +31,6 @@ def register(request):
     args = {}
     args.update(csrf(request))
     form = auth.forms.UserCreationForm()
-    print type(form)
-    for line in form:
-        print line
     args['form'] = form
     if request.POST:
         newuser_form = auth.forms.UserCreationForm(request.POST)

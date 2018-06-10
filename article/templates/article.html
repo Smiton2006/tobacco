@@ -1,13 +1,13 @@
 {% extends "main.html" %}
 {% block article %}
  
-    <div class="small-12 columns">
+    <div class="col">
         <h4> 
-            <a href="/article/get/{{ article.id }}" title="{{article.article_title}}">{{article.article_title}}</a>
+            <a href="/article/get/{{ article.id }}">{{article.article_title}}</a>
         </h4>
     </div>
 
-    <div class="small-10 columns">
+    <div class="col">
        <p>{{article.article_text}} </p>
         <h6> <small>{{article.article_date}}</small> </h6>
         <hr>        
@@ -18,27 +18,26 @@
         {% endif %}
 
         {% for comment in comments %}
-            <div class="card">
-                <div class="card-divider">
-                    <h6 class="subheader">
-                        <b>{{ comment.comments_user.username}}</b> <small>{{ comment.comments_date}}</small>
-                    </h6>
-                </div>
-                <div class="card-section">               
-                    <p><br>{{comment.comments_text}}</p>  
-                </div>                               
-            </div>
+            
+            <h6 class="subheader">
+                    <b><a href="#">{{ comment.comments_user.username}}</a></b> <small>{{ comment.comments_date}}</small>
+            </h6>
+            {{comment.comments_text}} 
+            <br> 
         {% endfor %}
 
         {% if username %}
             <form action="/article/addcoment/{{ article.id }}" method="POST">
+                <div class="form-group">
                 {% csrf_token %}
-                {{ form }}
-                <input type="submit" class="button" value="Добавить коментирй">
+                <label for="id_comments_text">Comments text:</label>
+                <textarea class="form-control" name="comments_text" id="id_comments_text" rows="3"></textarea>
+                <button type="submit" class="btn btn-primary">Добавить коментирй</button>
+            </div>
             </form>
         {% else %}
             <p>Только авторизированные пользователи могут оставлять коментарии</p>
-            <a href="/auth/login" class="button">Авторизироваться</a>
+            <a href="/auth/login" class="btn btn-primary">Авторизироваться</a>
         {% endif %}
     </div>   
 

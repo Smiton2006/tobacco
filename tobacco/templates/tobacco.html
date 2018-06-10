@@ -8,23 +8,33 @@
 </div> 
 <div class="row">
         <div class="columns small-3">
-                <img src="{{tobacco.img_src}}" width = "200px"/></div>
-        <div class="columns small-2 end">
-                <div class="slider" data-slider data-initial-start="1" data-end="5">
-                        <span class="slider-handle"  data-slider-handle role="slider" tabindex="1" aria-controls="sliderOutput1"></span>
-                        <span class="slider-fill" data-slider-fill></span>
-                </div>
+                <img src="{{tobacco.img_src}}" width = "200px"/>
+        </div>
                 <form action="#" method="POST">
                         {% csrf_token %}
-                        <input type="number" name="rate" id="sliderOutput1">
-                        <input type="submit" class="button" value="Оценить">
+                        <div class="form-group">
+                                <input type="range" name="rate"  min="1" max="5" value="3" class="slider" id="myRange">
+                        </div>
+                        <p>Оценка: <span id="demo"></span></p>
+                        <input type="submit" class="btn btn-primary" value="Оценить">
                 </form>
         </div>
 </div>
+
+<div class="slidecontainer">
 
           
 {% endblock tobaccos %} 
 
 {% block script %}
-
+<script>
+                var slider = document.getElementById("myRange");
+                var output = document.getElementById("demo");
+                output.innerHTML = slider.value; // Display the default slider value
+                
+                // Update the current slider value (each time you drag the slider handle)
+                slider.oninput = function() {
+                    output.innerHTML = this.value;
+                }
+</script>
 {% endblock script %}
